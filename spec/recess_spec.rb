@@ -72,7 +72,7 @@ describe Recess::Timeouts do
 
     context 'with nested_timeouts' do
       subject { described_class.with_hard_timeout(attempts, timeout, &action) }
-      let(:nested_timeout) { 0.03 }
+      let(:nested_timeout) { 0.07 }
 
       let(:action) do
         lambda {
@@ -84,6 +84,7 @@ describe Recess::Timeouts do
 
       context 'slow timeout' do
         let(:nested_attempts) { 1 }
+        let(:timeout) { 2 }
 
         it 'throws a TimeoutError after trying once within the nested block' do
           RecessTest::Performer.should_receive(:perform).twice
@@ -95,7 +96,7 @@ describe Recess::Timeouts do
         let(:nested_attempts) { 4 }
 
         it 'throws a HardTimeoutError after trying twice within the nested block' do
-          RecessTest::Performer.should_receive(:perform).exactly(4).times
+          RecessTest::Performer.should_receive(:perform).exactly(2).times
           expect { subject }.to raise_error(Recess::HardTimeoutError)
         end
       end

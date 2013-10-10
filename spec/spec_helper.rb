@@ -6,6 +6,6 @@ class RecessTest::Performer
 
   def self.slow_perform
     self.perform
-    sleep 0.05
+    sleep 0.5
   end
 end
