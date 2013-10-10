@@ -1,4 +1,4 @@
-Copyright (c) 2013 Antek Piechnik
+Copyright (c) 2013 Antek Piechnik, Felipe Elias Philipp
 
 MIT License
 

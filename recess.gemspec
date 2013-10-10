@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Recess::VERSION
   spec.authors       = ["Antek Piechnik", "Felipe Elias Philipp"]
   spec.email         = ["antek.piechnik@gmail.com", "felipeelias@gmail.com"]
-  spec.description   = %q{Simple nested timeouts.}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
+  spec.description   = %q{Simple nested timeouts based on Timeout.}
+  spec.summary       = %q{Simple nested timeouts.}
+  spec.homepage      = "https://github.com/basecrm/recess"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
