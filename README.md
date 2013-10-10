@@ -1,6 +1,8 @@
 # Recess
 
-TODO: Write a gem description
+[![Build Status](https://travis-ci.org/basecrm/recess.png?branch=master)](https://travis-ci.org/basecrm/recess)
+
+Simple nestable timeouts for Ruby built on the Timeout module.
 
 ## Installation
 
@@ -18,7 +20,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Regular timeouts
+
+Wrap your methods in timeouts like this:
+
+```ruby
+Recess::Timeouts.with_timeout(attempts, timeout) do
+  Performer.possibly_slow_action
+end
+```
+
+This will raise a ``Recess::TimeoutError`` when the maximum number of attempts is reached.
+
+### Top-level timeouts
+
+Nest regular timeouts within a top-level (hard) timeout to impose a top-level timeout like this:
+
+```ruby
+Recess::Timeouts.with_hard_timeout(attempts, timeout) do
+  Recess::Timeouts.with_timeout(nested_attempts, nested_timeouts) do
+    Performer.possibly_slow_action
+  end
+end
+```
+
+This will raise a ``Recess::HardTimeoutError`` when the global timeout expires and the desired number of attempts is reached.
+
+Should the nested timeout be first to expire / reach the maximum attempts count, a regular ``Recess::TimeoutError`` will be raised.
 
 ## Contributing
 
